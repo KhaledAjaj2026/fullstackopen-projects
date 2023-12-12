@@ -1,9 +1,8 @@
 import '../App.css';
 
 const Notification = ({ message }) => {
-	const failed = /failed/.test(message);
 	if (message === null) return null;
-	else if (failed) {
+	else if (/failed/g.test(message)) {
 		return <div className='notification error'>{message}</div>;
 	}
 

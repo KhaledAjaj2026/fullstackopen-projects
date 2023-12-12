@@ -2,7 +2,9 @@ import DeletePerson from './DeletePerson';
 
 function RenderPersons({ persons, find, setPersons }) {
 	const filteredPersons = find
-		? persons.filter((person) => person.name.toLowerCase().includes(find))
+		? persons.filter((person) =>
+				person.name.toLowerCase().includes(find.toLowerCase())
+		  )
 		: persons;
 
 	return filteredPersons.map((person) => (
