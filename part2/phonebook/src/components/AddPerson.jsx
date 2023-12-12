@@ -4,7 +4,6 @@ function AddPerson({
 	newName,
 	newNumber,
 	persons,
-	message,
 	setNewName,
 	setNewNumber,
 	setPersons,
@@ -22,14 +21,41 @@ function AddPerson({
 	const addNewName = (event) => {
 		event.preventDefault();
 		if (newName && newNumber) {
+			const newPerson = {
+				name: newName,
+				number: newNumber,
+			};
 			if (findDuplicate()) {
-				alert(`${newName} is already added to the phonebook`);
+				if (
+					window.confirm(
+						`${newName} is already added to the phonebook, update number anyway?`
+					)
+				) {
+					let personId = '';
+					persons.forEach((person) => {
+						if (person.name === newName) {
+							personId = person.id;
+							return;
+						}
+					});
+					userMethods
+						.updatePerson(personId, newPerson)
+						.then(() => {
+							const updatedPersons = [...persons];
+							updatedPersons.find((person) => person.name === newName).number =
+								newNumber;
+							setPersons(updatedPersons);
+							setNewName('');
+							setNewNumber('');
+						})
+						.then(() => {
+							setMessage(`updated number for ${newName}`);
+							setTimeout(() => {
+								setMessage(null);
+							}, 4000);
+						});
+				}
 			} else {
-				const newPerson = {
-					name: newName,
-					number: newNumber,
-				};
-
 				userMethods
 					.postPerson(newPerson)
 					.then(() => {

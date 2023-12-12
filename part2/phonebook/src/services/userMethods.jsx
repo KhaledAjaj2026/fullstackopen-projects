@@ -5,7 +5,8 @@ const getAll = () => axios.get(baseURL);
 
 const postPerson = (newObject) => axios.post(baseURL, newObject);
 
-const updatePerson = (newObject) => axios.put(`${baseURL}/${id}`, newObject);
+const updatePerson = (id, newObject) =>
+	axios.put(`${baseURL}/${id}`, newObject);
 
 const deletePerson = (id) => axios.delete(`${baseURL}/${id}`);
 
