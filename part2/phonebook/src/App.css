@@ -1,8 +1,16 @@
-.notification-container {
-    color: green;
+.notification {
     background-color: gainsboro;
-    border: 3px solid green;
     font-size: 2rem;
     border-radius: 15px;
     text-align: center;
+}
+
+.success {
+    color: green;
+    border: 3px solid green;
+}
+
+.error {
+    color: red;
+    border: 3px solid red;
 }

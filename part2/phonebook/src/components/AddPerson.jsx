@@ -68,6 +68,12 @@ function AddPerson({
 						setTimeout(() => {
 							setMessage(null);
 						}, 4000);
+					})
+					.catch((err) => {
+						setMessage(err.response.data.error);
+						setTimeout(() => {
+							setMessage(null);
+						}, 4000);
 					});
 			}
 		} else {
